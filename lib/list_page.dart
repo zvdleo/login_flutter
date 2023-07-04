@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class ListPage extends StatelessWidget {
   final List<Map<String, String>> itemList = [
     {
@@ -63,6 +64,41 @@ class ListPage extends StatelessWidget {
         centerTitle: true, // Centralizar o título
         title: const Text(
           'Contacts', // Altere "Listagem" para "Contacts"
+        ),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu), // Ícone de menu
+              onPressed: () {
+                Scaffold.of(context).openDrawer(); // Abre o drawer
+              },
+            );
+          },
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text('Sobre'),
+              onTap: () {
+                Navigator.pushNamed(context, '/sobre'); // Navega para a página "sobre_page.dart"
+              },
+            ),         // Adicione mais itens de menu conforme necessário
+          ],
         ),
       ),
       body: ListView.builder(
